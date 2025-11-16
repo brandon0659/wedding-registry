@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Brandon & Grace – Wedding Registry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #faf7f5;
+      color: #222;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 840px;
+      width: 100%;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    header h2 {
+      margin: 6px 0 0;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #777;
+    }
+
+    header p {
+      margin-top: 14px;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .note {
+      background: #fff;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+      border: 1px solid #eee;
+      line-height: 1.5;
+    }
+
+    .note strong {
+      font-weight: 600;
+    }
+
+    .gift-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .gift-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 16px;
+      border: 1px solid #e0d7cf;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .gift-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .gift-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .gift-price {
+      font-size: 0.9rem;
+      color: #554;
+      white-space: nowrap;
+    }
+
+    .gift-desc {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .gift-link a {
+      font-size: 0.9rem;
+      text-decoration: none;
+      border-bottom: 1px solid #b89c8a;
+      color: inherit;
+    }
+
+    .gift-link a:hover {
+      border-bottom-color: #333;
+    }
+
+    .gift-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .name-input {
+      flex: 1;
+      min-width: 140px;
+      padding: 7px 9px;
+      font-size: 0.9rem;
+      border-radius: 7px;
+      border: 1px solid #c9bdb4;
+      background: #fdfaf7;
+    }
+
+    .reserve-btn {
+      padding: 7px 14px;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: #333129;
+      color: #fff;
+    }
+
+    .reserve-btn:disabled {
+      opacity: 0.65;
+      cursor: default;
+    }
+
+    .status {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: #777;
+      min-height: 1em;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 24px 0;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    footer {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Brandon &amp; Grace</h1>
+      <h2>Wedding Registry</h2>
+      <p>Thank you for celebrating with us. Your presence is our greatest gift.</p>
+    </header>
+
+    <div class="note">
+      <p>
+        <strong>How it works:</strong> Please choose any gift you’d like to bless us with and click
+        “I’ll get this”. It will then disappear from the list so others don’t double-purchase it.
+      </p>
+      <p style="margin-top: 6px;">
+        If a link doesn’t work, feel free to choose a similar item from another store.
+      </p>
+    </div>
+
+    <div id="loading" class="loading">Loading gifts...</div>
+    <div id="giftList" class="gift-list" style="display: none;"></div>
+    <div id="status" class="status"></div>
+
+    <footer>
+      With love,<br />Brandon &amp; Grace 💛
+    </footer>
+  </div>
+
+  <!-- Firebase + Firestore logic -->
+  <script type="module">
+    // Import Firebase from the CDN
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      query,
+      where,
+      onSnapshot,
+      doc,
+      updateDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    // Your Firebase config (from your message)
+    const firebaseConfig = {
+      apiKey: "AIzaSyChceGofQJDLdB4rt8toGdJ5MSdZImM9EE",
+      authDomain: "chongweddingregistry.firebaseapp.com",
+      projectId: "chongweddingregistry",
+      storageBucket: "chongweddingregistry.firebasestorage.app",
+      messagingSenderId: "483494412686",
+      appId: "1:483494412686:web:4fd975832afc65c6c6e4df",
+      measurementId: "G-6CLRB0307T"
+    };
+
+    // Initialise Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const giftListEl = document.getElementById("giftList");
+    const loadingEl = document.getElementById("loading");
+    const statusEl = document.getElementById("status");
+
+    // Listen to all gifts where reserved == false
+    const giftsRef = collection(db, "gifts");
+    const q = query(giftsRef, where("reserved", "==", false));
+
+    onSnapshot(
+      q,
+      (snapshot) => {
+        // Hide loading text
+        loadingEl.style.display = "none";
+        giftListEl.style.display = "flex";
+        statusEl.textContent = "";
+
+        // Clear existing list
+        giftListEl.innerHTML = "";
+
+        if (snapshot.empty) {
+          giftListEl.innerHTML =
+            "<p>All gifts have been reserved. Thank you so much for your generosity 🥹</p>";
+          return;
+        }
+
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          const giftId = docSnap.id;
+
+          const card = document.createElement("div");
+          card.className = "gift-card";
+
+          // Header (name + price)
+          const header = document.createElement("div");
+          header.className = "gift-header";
+
+          const title = document.createElement("div");
+          title.className = "gift-title";
+          title.textContent = data.name || "Gift";
+          header.appendChild(title);
+
+          if (typeof data.price === "number") {
+            const priceEl = document.createElement("div");
+            priceEl.className = "gift-price";
+            priceEl.textContent = `~ $${data.price.toFixed(2)}`;
+            header.appendChild(priceEl);
+          }
+
+          card.appendChild(header);
+
+          // Description
+          if (data.description) {
+            const desc = document.createElement("div");
+            desc.className = "gift-desc";
+            desc.textContent = data.description;
+            card.appendChild(desc);
+          }
+
+          // Link
+          if (data.link) {
+            const linkDiv = document.createElement("div");
+            linkDiv.className = "gift-link";
+            const a = document.createElement("a");
+            a.href = data.link;
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            a.textContent = "View item";
+            linkDiv.appendChild(a);
+            card.appendChild(linkDiv);
+          }
+
+          // Actions (name + reserve button)
+          const actions = document.createElement("div");
+          actions.className = "gift-actions";
+
+          const nameInput = document.createElement("input");
+          nameInput.className = "name-input";
+          nameInput.placeholder = "Your name (optional)";
+          nameInput.type = "text";
+          actions.appendChild(nameInput);
+
+          const btn = document.createElement("button");
+          btn.className = "reserve-btn";
+          btn.textContent = "I’ll get this";
+
+          btn.addEventListener("click", async () => {
+            try {
+              btn.disabled = true;
+              btn.textContent = "Reserving...";
+
+              const giftDocRef = doc(db, "gifts", giftId);
+
+              await updateDoc(giftDocRef, {
+                reserved: true,
+                reservedBy: nameInput.value.trim() || null,
+                reservedAt: new Date()
+              });
+
+              statusEl.textContent =
+                "Thank you! That gift has been reserved and removed from the list.";
+            } catch (err) {
+              console.error(err);
+              statusEl.textContent =
+                "Something went wrong reserving that gift. Please try again, or contact us directly.";
+              btn.disabled = false;
+              btn.textContent = "I’ll get this";
+            }
+          });
+
+          actions.appendChild(btn);
+          card.appendChild(actions);
+
+          giftListEl.appendChild(card);
+        });
+      },
+      (error) => {
+        console.error(error);
+        loadingEl.textContent =
+          "Error loading gifts. Please refresh the page or try again later.";
+      }
+    );
+  </script>
+</body>
+</html>
