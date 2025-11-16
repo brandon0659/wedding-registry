@@ -5,6 +5,10 @@
   <title>Grace & Brandon – Wedding Registry</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Favicon -->
+  <!-- Ensure favicon.png is in the same folder as this HTML file -->
+  <link rel="icon" type="image/png" href="favicon.jpg" />
+
   <!-- Elegant fonts (serif + script) -->
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Great+Vibes&display=swap"
@@ -49,34 +53,17 @@
     }
 
     .save-the-date {
-      font-family: "Playfair Display", "Times New Roman", serif;
+      font-family: "Playfair Display", serif;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       font-size: 1.35rem;
       margin: 0 0 8px;
     }
 
-    .for-the-wedding {
-      font-family: "Playfair Display", "Times New Roman", serif;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      margin: 0 0 10px;
-    }
-
     .names {
-      font-family: "Great Vibes", "Zapfino", cursive;
+      font-family: "Great Vibes", cursive;
       font-size: 2.6rem;
       margin: 10px 0 6px;
-      font-weight: 400;
-    }
-
-    .date-line {
-      font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: 0.95rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin: 12px 0 0;
     }
 
     .hero-photo {
@@ -101,53 +88,27 @@
       letter-spacing: 0.06em;
     }
 
-    .location {
-      text-align: center;
-      margin-bottom: 32px;
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .location span {
-      display: block;
-    }
-
     .section-heading {
       text-align: center;
       margin-top: 24px;
       margin-bottom: 8px;
-      font-family: "Playfair Display", "Times New Roman", serif;
+      font-family: "Playfair Display", serif;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       font-size: 0.82rem;
     }
 
     .note {
-  text-align: center;
-  font-size: 0.9rem;
-  line-height: 1.7;
-  margin: 16px auto 24px;
-  color: #444;
-
-  /* Announcement box styling */
-  border: 1px solid #e2e2e2;
-  border-radius: 10px;
-  padding: 18px 22px;
-  max-width: 640px;
-  background: #fcfaf9;
-}
-
-
-
-
-    .note strong {
-      font-weight: 700;
-    }
-
-    .contact-note {
-      font-size: 0.85rem;
-      margin-top: 10px;
-      color: #555;
+      text-align: center;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin: 16px auto 24px;
+      color: #444;
+      border: 1px solid #e2e2e2;
+      border-radius: 10px;
+      padding: 18px 22px;
+      max-width: 640px;
+      background: #fcfaf9;
     }
 
     .gift-list {
@@ -177,13 +138,12 @@
     .gift-title {
       font-size: 0.98rem;
       font-weight: 700;
-      font-family: "Playfair Display", "Times New Roman", serif;
+      font-family: "Playfair Display", serif;
     }
 
     .gift-price {
       font-size: 0.9rem;
       color: #444;
-      white-space: nowrap;
     }
 
     .gift-desc {
@@ -199,58 +159,12 @@
       color: inherit;
     }
 
-    .gift-link a:hover {
-      border-bottom-color: #111;
-    }
-
     .gift-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       align-items: center;
       margin-top: 4px;
-    }
-
-    .name-input {
-      flex: 1;
-      min-width: 140px;
-      padding: 7px 9px;
-      font-size: 0.86rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      background: #ffffff;
-      font-family: inherit;
-    }
-
-    .reserve-btn {
-      padding: 7px 14px;
-      font-size: 0.86rem;
-      border-radius: 999px;
-      border: 1px solid #111;
-      background: #111;
-      color: #fff;
-      cursor: pointer;
-      font-family: inherit;
-    }
-
-    .reserve-btn:disabled {
-      opacity: 0.65;
-      cursor: default;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 20px 0 4px;
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    .status {
-      margin-top: 14px;
-      font-size: 0.84rem;
-      color: #555;
-      min-height: 1em;
-      text-align: center;
     }
 
     footer {
@@ -261,6 +175,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="page">
     <div class="card">
@@ -269,39 +184,35 @@
         <div class="names">Brandon &amp; Grace</div>
       </header>
 
-      <!-- HERO PHOTO AREA -->
       <div class="hero-photo">
-        <!--
-          Replace the src below with your own image URL or file.
-          Example if you host the image in the same folder:
-          <img src="our-photo.jpg" alt="Brandon and Grace" />
-        -->
-        <img
-          src="bgphoto.jpeg"
-          alt="Brandon and Grace"
-        />
-        <div class="hero-caption">
-          The Groom &amp; Bride to be!
-        </div>
+        <img src="bgphoto.jpeg" alt="Brandon and Grace" />
+        <div class="hero-caption">The Groom &amp; Bride to be!</div>
       </div>
 
       <div class="section-heading">Wedding Registry</div>
       <div class="note">
-        <p>
-          Your presence is truly the greatest gift to us. For those who would also like to bless us with a present,
-          we’ve created a small list of things that will help us begin our life together.
-        </p>
-        <p>
-          Please choose any item you would like to give and click <strong>“I’ll get this”</strong>. It will disappear from the list so others don’t accidentally purchase the same gift.
-        </p>
-        <p class="contact-note">
-          If you’ve reserved something by mistake or changed your mind, please just reach out to Brandon or Grace and
-          we’ll happily update the list for you.
-        </p>
+        <p>Your presence is truly the greatest gift to us. For those who would also like to bless us with a present, we’ve created a list to help us begin our life together.</p>
+        <p>Please choose an item and click <strong>“I’ll get this”</strong>. It will disappear so others don’t accidentally purchase the same gift.</p>
+        <p class="contact-note">If you reserved something by mistake, please let Brandon or Grace know and we’ll update it for you.</p>
+      </div>
+
+      <!-- Sort Dropdown -->
+      <div style="text-align:center; margin-bottom: 12px;">
+        <select id="sortSelect" style="
+          padding: 8px 12px;
+          border-radius: 8px;
+          border: 1px solid #ccc;
+          font-size: 0.9rem;
+          font-family: inherit;
+        ">
+          <option value="nameAZ">Alphabetical (A → Z)</option>
+          <option value="priceLow">Price: Low → High</option>
+          <option value="priceHigh">Price: High → Low</option>
+        </select>
       </div>
 
       <div id="loading" class="loading">Loading gifts...</div>
-      <div id="giftList" class="gift-list" style="display: none;"></div>
+      <div id="giftList" class="gift-list" style="display:none;"></div>
       <div id="status" class="status"></div>
 
       <footer>
@@ -311,17 +222,12 @@
     </div>
   </div>
 
-  <!-- Firebase + Firestore logic -->
+  <!-- Firebase + Sorting Logic -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import {
-      getFirestore,
-      collection,
-      query,
-      where,
-      onSnapshot,
-      doc,
-      updateDoc
+      getFirestore, collection, query, where,
+      onSnapshot, doc, updateDoc
     } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -338,120 +244,120 @@
     const db = getFirestore(app);
 
     const giftListEl = document.getElementById("giftList");
-    const loadingEl = document.getElementById("loading");
-    const statusEl = document.getElementById("status");
+    const loadingEl   = document.getElementById("loading");
+    const statusEl    = document.getElementById("status");
+    const sortSelect  = document.getElementById("sortSelect");
+
+    let currentGifts = [];
 
     const giftsRef = collection(db, "gifts");
     const q = query(giftsRef, where("reserved", "==", false));
 
-    onSnapshot(
-      q,
-      (snapshot) => {
-        loadingEl.style.display = "none";
-        giftListEl.style.display = "flex";
-        statusEl.textContent = "";
-        giftListEl.innerHTML = "";
+    onSnapshot(q, (snapshot) => {
+      loadingEl.style.display = "none";
+      currentGifts = [];
 
-        if (snapshot.empty) {
-          giftListEl.innerHTML =
-            "<p style='text-align:center;font-size:0.9rem;'>All gifts have been reserved. Thank you so much for your generosity 🥹</p>";
-          return;
+      snapshot.forEach((docSnap) => {
+        currentGifts.push({ id: docSnap.id, ...docSnap.data() });
+      });
+
+      renderGifts();
+    });
+
+    sortSelect.addEventListener("change", renderGifts);
+
+    function renderGifts() {
+      giftListEl.innerHTML = "";
+      giftListEl.style.display = "flex";
+
+      if (currentGifts.length === 0) {
+        giftListEl.innerHTML = "<p style='text-align:center;font-size:0.9rem;'>All gifts have been reserved. Thank you 🥹</p>";
+        return;
+      }
+
+      const sortVal = sortSelect.value;
+      let sorted = [...currentGifts];
+
+      if (sortVal === "nameAZ") {
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (sortVal === "priceLow") {
+        sorted.sort((a, b) => (a.price || 0) - (b.price || 0));
+      } else if (sortVal === "priceHigh") {
+        sorted.sort((a, b) => (b.price || 0) - (a.price || 0));
+      }
+
+      sorted.forEach((data) => {
+        const card = document.createElement("div");
+        card.className = "gift-card";
+
+        const header = document.createElement("div");
+        header.className = "gift-header";
+
+        const title = document.createElement("div");
+        title.className = "gift-title";
+        title.textContent = data.name;
+        header.appendChild(title);
+
+        if (typeof data.price === "number") {
+          const priceEl = document.createElement("div");
+          priceEl.className = "gift-price";
+          priceEl.textContent = `~ $${data.price.toFixed(2)}`;
+          header.appendChild(priceEl);
         }
 
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const giftId = docSnap.id;
+        card.appendChild(header);
 
-          const card = document.createElement("div");
-          card.className = "gift-card";
+        if (data.description) {
+          const desc = document.createElement("div");
+          desc.className = "gift-desc";
+          desc.textContent = data.description;
+          card.appendChild(desc);
+        }
 
-          const header = document.createElement("div");
-          header.className = "gift-header";
+        if (data.link) {
+          const linkDiv = document.createElement("div");
+          linkDiv.className = "gift-link";
+          linkDiv.innerHTML = `<a href="${data.link}" target="_blank">View item</a>`;
+          card.appendChild(linkDiv);
+        }
 
-          const title = document.createElement("div");
-          title.className = "gift-title";
-          title.textContent = data.name || "Gift";
-          header.appendChild(title);
+        const actions = document.createElement("div");
+        actions.className = "gift-actions";
 
-          if (typeof data.price === "number") {
-            const priceEl = document.createElement("div");
-            priceEl.className = "gift-price";
-            priceEl.textContent = `~ $${data.price.toFixed(2)}`;
-            header.appendChild(priceEl);
+        const nameInput = document.createElement("input");
+        nameInput.className = "name-input";
+        nameInput.placeholder = "Your name (optional)";
+        actions.appendChild(nameInput);
+
+        const btn = document.createElement("button");
+        btn.className = "reserve-btn";
+        btn.textContent = "I’ll get this";
+
+        btn.addEventListener("click", async () => {
+          try {
+            btn.disabled = true;
+            btn.textContent = "Reserving...";
+            const giftDocRef = doc(db, "gifts", data.id);
+
+            await updateDoc(giftDocRef, {
+              reserved: true,
+              reservedBy: nameInput.value.trim() || null,
+              reservedAt: new Date()
+            });
+
+            statusEl.textContent = "Thank you! That gift has been reserved.";
+          } catch (err) {
+            statusEl.textContent = "Something went wrong. Please try again.";
+            btn.disabled = false;
+            btn.textContent = "I’ll get this";
           }
-
-          card.appendChild(header);
-
-          if (data.description) {
-            const desc = document.createElement("div");
-            desc.className = "gift-desc";
-            desc.textContent = data.description;
-            card.appendChild(desc);
-          }
-
-          if (data.link) {
-            const linkDiv = document.createElement("div");
-            linkDiv.className = "gift-link";
-            const a = document.createElement("a");
-            a.href = data.link;
-            a.target = "_blank";
-            a.rel = "noopener noreferrer";
-            a.textContent = "View item";
-            linkDiv.appendChild(a);
-            card.appendChild(linkDiv);
-          }
-
-          const actions = document.createElement("div");
-          actions.className = "gift-actions";
-
-          const nameInput = document.createElement("input");
-          nameInput.className = "name-input";
-          nameInput.placeholder = "Your name (optional)";
-          nameInput.type = "text";
-          actions.appendChild(nameInput);
-
-          const btn = document.createElement("button");
-          btn.className = "reserve-btn";
-          btn.textContent = "I’ll get this";
-
-          btn.addEventListener("click", async () => {
-            try {
-              btn.disabled = true;
-              btn.textContent = "Reserving...";
-
-              const giftDocRef = doc(db, "gifts", giftId);
-
-              await updateDoc(giftDocRef, {
-                reserved: true,
-                reservedBy: nameInput.value.trim() || null,
-                reservedAt: new Date()
-              });
-
-              statusEl.textContent =
-                "Thank you! That gift has been reserved and removed from the list.";
-            } catch (err) {
-              console.error(err);
-              statusEl.textContent =
-                "Something went wrong reserving that gift. Please try again, or contact us directly.";
-              btn.disabled = false;
-              btn.textContent = "I’ll get this";
-            }
-          });
-
-          actions.appendChild(btn);
-          card.appendChild(actions);
-
-          giftListEl.appendChild(card);
         });
-      },
-      (error) => {
-        console.error(error);
-        loadingEl.textContent =
-          "Error loading gifts. Please refresh the page or try again later.";
-      }
-    );
+
+        actions.appendChild(btn);
+        card.appendChild(actions);
+        giftListEl.appendChild(card);
+      });
+    }
   </script>
 </body>
 </html>
-
-
