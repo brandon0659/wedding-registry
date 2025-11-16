@@ -2,121 +2,195 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Brandon & Grace – Wedding Registry</title>
+  <title>Grace & Brandon – Wedding Registry</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Elegant fonts (serif + script) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Great+Vibes&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     * {
       box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     body {
       margin: 0;
-      background: #faf7f5;
-      color: #222;
+      background: #ffffff;
+      color: #111111;
       display: flex;
       justify-content: center;
+      font-family: "Libre Baskerville", "Times New Roman", serif;
     }
 
-    .container {
-      max-width: 840px;
+    .page {
+      max-width: 900px;
       width: 100%;
-      padding: 24px 16px 48px;
+      padding: 32px 18px 56px;
+    }
+
+    .card {
+      border: 1px solid #e2e2e2;
+      background: #ffffff;
+      padding: 40px 26px 32px;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 56px 80px 48px;
+      }
     }
 
     header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 32px;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.1rem;
-      letter-spacing: 0.08em;
+    .save-the-date {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
+      font-size: 1.35rem;
+      margin: 0 0 8px;
     }
 
-    header h2 {
-      margin: 6px 0 0;
-      font-size: 1rem;
-      font-weight: 400;
+    .for-the-wedding {
+      font-family: "Playfair Display", "Times New Roman", serif;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #777;
+      font-size: 0.8rem;
+      margin: 0 0 10px;
     }
 
-    header p {
-      margin-top: 14px;
-      margin-bottom: 0;
+    .names {
+      font-family: "Great Vibes", "Zapfino", cursive;
+      font-size: 2.6rem;
+      margin: 10px 0 6px;
+      font-weight: 400;
+    }
+
+    .date-line {
+      font-family: "Playfair Display", "Times New Roman", serif;
       font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 12px 0 0;
+    }
+
+    .hero-photo {
+      margin: 36px auto 32px;
+      max-width: 520px;
+      border: 1px solid #e5e5e5;
+      padding: 6px;
+      background: #fafafa;
+    }
+
+    .hero-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-caption {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.8rem;
       color: #555;
+      letter-spacing: 0.06em;
+    }
+
+    .location {
+      text-align: center;
+      margin-bottom: 32px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .location span {
+      display: block;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-top: 24px;
+      margin-bottom: 8px;
+      font-family: "Playfair Display", "Times New Roman", serif;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
     }
 
     .note {
-      background: #fff;
-      border-radius: 10px;
-      padding: 12px 14px;
-      margin-top: 16px;
-      margin-bottom: 16px;
+      text-align: center;
       font-size: 0.9rem;
-      border: 1px solid #eee;
-      line-height: 1.5;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: #444;
     }
 
     .note strong {
-      font-weight: 600;
+      font-weight: 700;
+    }
+
+    .contact-note {
+      font-size: 0.85rem;
+      margin-top: 10px;
+      color: #555;
     }
 
     .gift-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-top: 8px;
+      margin-top: 14px;
     }
 
     .gift-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 14px 16px;
-      border: 1px solid #e0d7cf;
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: #fcfcfc;
       display: flex;
       flex-direction: column;
       gap: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     }
 
     .gift-header {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
       gap: 8px;
+      align-items: baseline;
     }
 
     .gift-title {
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 0.98rem;
+      font-weight: 700;
+      font-family: "Playfair Display", "Times New Roman", serif;
     }
 
     .gift-price {
       font-size: 0.9rem;
-      color: #554;
+      color: #444;
       white-space: nowrap;
     }
 
     .gift-desc {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #555;
+      line-height: 1.5;
     }
 
     .gift-link a {
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       text-decoration: none;
-      border-bottom: 1px solid #b89c8a;
+      border-bottom: 1px solid #999;
       color: inherit;
     }
 
     .gift-link a:hover {
-      border-bottom-color: #333;
+      border-bottom-color: #111;
     }
 
     .gift-actions {
@@ -131,20 +205,22 @@
       flex: 1;
       min-width: 140px;
       padding: 7px 9px;
-      font-size: 0.9rem;
-      border-radius: 7px;
-      border: 1px solid #c9bdb4;
-      background: #fdfaf7;
+      font-size: 0.86rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background: #ffffff;
+      font-family: inherit;
     }
 
     .reserve-btn {
       padding: 7px 14px;
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      background: #333129;
+      border: 1px solid #111;
+      background: #111;
       color: #fff;
+      cursor: pointer;
+      font-family: inherit;
     }
 
     .reserve-btn:disabled {
@@ -152,58 +228,88 @@
       cursor: default;
     }
 
-    .status {
-      margin-top: 14px;
-      font-size: 0.85rem;
-      color: #777;
-      min-height: 1em;
-    }
-
     .loading {
       text-align: center;
-      padding: 24px 0;
-      font-size: 0.95rem;
+      padding: 20px 0 4px;
+      font-size: 0.9rem;
       color: #555;
     }
 
+    .status {
+      margin-top: 14px;
+      font-size: 0.84rem;
+      color: #555;
+      min-height: 1em;
+      text-align: center;
+    }
+
     footer {
-      margin-top: 32px;
+      margin-top: 28px;
       text-align: center;
       font-size: 0.8rem;
-      color: #999;
+      color: #777;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Brandon &amp; Grace</h1>
-      <h2>Wedding Registry</h2>
-      <p>Thank you for celebrating with us. Your presence is our greatest gift.</p>
-    </header>
+  <div class="page">
+    <div class="card">
+      <header>
+        <div class="save-the-date">SAVE THE DATE</div>
+        <div class="for-the-wedding">FOR THE WEDDING OF</div>
+        <div class="names">Brandon &amp; Grace</div>
+        <div class="date-line">DECEMBER 7, 2026</div>
+      </header>
 
-    <div class="note">
-      <p>
-        <strong>How it works:</strong> Please choose any gift you’d like to bless us with and click
-        “I’ll get this”. It will then disappear from the list so others don’t double-purchase it.
-      </p>
-      <p style="margin-top: 6px;">
-        If a link doesn’t work, feel free to choose a similar item from another store.
-      </p>
+      <!-- HERO PHOTO AREA -->
+      <div class="hero-photo">
+        <!--
+          Replace the src below with your own image URL or file.
+          Example if you host the image in the same folder:
+          <img src="our-photo.jpg" alt="Brandon and Grace" />
+        -->
+        <img
+          src="https://via.placeholder.com/800x500?text=Your+Photo+Here"
+          alt="Brandon and Grace"
+        />
+        <div class="hero-caption">
+          Brandon &amp; Grace
+        </div>
+      </div>
+
+      <div class="location">
+        <span>Crossway Baptist Church</span>
+        <span>Burwood East 3151</span>
+      </div>
+
+      <div class="section-heading">Wedding Registry</div>
+      <div class="note">
+        <p>
+          Your presence is truly the greatest gift to us. For those who would also like to bless us with a present,
+          we’ve created a small list of things that will help us begin our life together.
+        </p>
+        <p>
+          Please choose any item you would like to give and click <strong>“I’ll get this”</strong>. It will disappear from the list so others don’t accidentally purchase the same gift.
+        </p>
+        <p class="contact-note">
+          If you’ve reserved something by mistake or changed your mind, please just reach out to Brandon or Grace and
+          we’ll happily update the list for you.
+        </p>
+      </div>
+
+      <div id="loading" class="loading">Loading gifts...</div>
+      <div id="giftList" class="gift-list" style="display: none;"></div>
+      <div id="status" class="status"></div>
+
+      <footer>
+        With love and gratitude,<br />
+        Brandon &amp; Grace
+      </footer>
     </div>
-
-    <div id="loading" class="loading">Loading gifts...</div>
-    <div id="giftList" class="gift-list" style="display: none;"></div>
-    <div id="status" class="status"></div>
-
-    <footer>
-      With love,<br />Brandon &amp; Grace 💛
-    </footer>
   </div>
 
   <!-- Firebase + Firestore logic -->
   <script type="module">
-    // Import Firebase from the CDN
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import {
       getFirestore,
@@ -215,7 +321,6 @@
       updateDoc
     } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    // Your Firebase config (from your message)
     const firebaseConfig = {
       apiKey: "AIzaSyChceGofQJDLdB4rt8toGdJ5MSdZImM9EE",
       authDomain: "chongweddingregistry.firebaseapp.com",
@@ -226,7 +331,6 @@
       measurementId: "G-6CLRB0307T"
     };
 
-    // Initialise Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
@@ -234,24 +338,20 @@
     const loadingEl = document.getElementById("loading");
     const statusEl = document.getElementById("status");
 
-    // Listen to all gifts where reserved == false
     const giftsRef = collection(db, "gifts");
     const q = query(giftsRef, where("reserved", "==", false));
 
     onSnapshot(
       q,
       (snapshot) => {
-        // Hide loading text
         loadingEl.style.display = "none";
         giftListEl.style.display = "flex";
         statusEl.textContent = "";
-
-        // Clear existing list
         giftListEl.innerHTML = "";
 
         if (snapshot.empty) {
           giftListEl.innerHTML =
-            "<p>All gifts have been reserved. Thank you so much for your generosity 🥹</p>";
+            "<p style='text-align:center;font-size:0.9rem;'>All gifts have been reserved. Thank you so much for your generosity 🥹</p>";
           return;
         }
 
@@ -262,7 +362,6 @@
           const card = document.createElement("div");
           card.className = "gift-card";
 
-          // Header (name + price)
           const header = document.createElement("div");
           header.className = "gift-header";
 
@@ -280,7 +379,6 @@
 
           card.appendChild(header);
 
-          // Description
           if (data.description) {
             const desc = document.createElement("div");
             desc.className = "gift-desc";
@@ -288,7 +386,6 @@
             card.appendChild(desc);
           }
 
-          // Link
           if (data.link) {
             const linkDiv = document.createElement("div");
             linkDiv.className = "gift-link";
@@ -301,7 +398,6 @@
             card.appendChild(linkDiv);
           }
 
-          // Actions (name + reserve button)
           const actions = document.createElement("div");
           actions.className = "gift-actions";
 
