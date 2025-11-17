@@ -5,8 +5,8 @@
   <title>Grace & Brandon – Wedding Registry</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Favicon (put favicon.png in the same folder as this HTML) -->
-  <link rel="icon" type="image/png" href="favicon.jpg" />
+  <!-- Favicon (put favicon.jpg in the same folder as this HTML) -->
+  <link rel="icon" type="image/jpeg" href="favicon.jpg" />
 
   <!-- Elegant fonts (serif + script) -->
   <link
@@ -216,7 +216,8 @@
       margin-top: 6px;
     }
 
-    .name-input {
+    .name-input,
+    .email-input {
       flex: 1;
       min-width: 170px;
       padding: 10px 14px;
@@ -229,11 +230,13 @@
       transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
     }
 
-    .name-input::placeholder {
+    .name-input::placeholder,
+    .email-input::placeholder {
       color: #b1a395;
     }
 
-    .name-input:focus {
+    .name-input:focus,
+    .email-input:focus {
       outline: none;
       border-color: #c39b5a;
       background: #fffaf3;
@@ -339,7 +342,14 @@
     </div>
   </div>
 
-  <!-- Firebase + Sorting Logic -->
+  <!-- EmailJS SDK (for sending confirmation emails) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // Replace with your own public key from EmailJS dashboard
+    emailjs.init("YOUR_PUBLIC_KEY");
+  </script>
+
+  <!-- Firebase + Sorting + Email Logic -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import {
@@ -364,6 +374,9 @@
     const loadingEl  = document.getElementById("loading");
     const statusEl   = document.getElementById("status");
     const sortSelect = document.getElementById("sortSelect");
+
+    // Put your registry URL here for the email template
+    const REGISTRY_URL = "https://your-registry-url-here";
 
     let currentGifts = [];
 
@@ -446,7 +459,14 @@
         nameInput.className = "name-input";
         nameInput.placeholder = "Your name (optional)";
         nameInput.type = "text";
+
+        const emailInput = document.createElement("input");
+        emailInput.className = "email-input";
+        emailInput.placeholder = "Email for confirmation (optional)";
+        emailInput.type = "email";
+
         actions.appendChild(nameInput);
+        actions.appendChild(emailInput);
 
         const btn = document.createElement("button");
         btn.className = "reserve-btn";
@@ -456,16 +476,51 @@
           try {
             btn.disabled = true;
             btn.textContent = "Reserving...";
+
+            const email = emailInput.value.trim();
+            const name  = nameInput.value.trim();
+
+            // Very light email format check
+            if (email && !email.includes("@")) {
+              statusEl.textContent = "Please enter a valid email address.";
+              btn.disabled = false;
+              btn.textContent = "I’ll get this";
+              return;
+            }
+
             const giftDocRef = doc(db, "gifts", data.id);
 
             await updateDoc(giftDocRef, {
               reserved: true,
-              reservedBy: nameInput.value.trim() || null,
+              reservedBy: name || null,
+              reservedEmail: email || null,
               reservedAt: new Date()
             });
 
-            statusEl.textContent =
-              "Thank you! That gift has been reserved.";
+            statusEl.textContent = "Thank you! That gift has been reserved.";
+
+            // If they provided an email, send a confirmation via EmailJS
+            if (email && window.emailjs) {
+              window.emailjs
+                .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+                  email,                           // 👈 matches {{email}} in EmailJS
+                  to_name: name || "",
+                  gift_name: data.name || "",
+                  gift_price: data.price
+                    ? `$${data.price.toFixed(2)}`
+                    : "",
+                  registry_url: REGISTRY_URL
+                })
+                .then(() => {
+                  statusEl.textContent =
+                    "Thank you! That gift has been reserved and a confirmation email has been sent.";
+                })
+                .catch((err) => {
+                  console.error("EmailJS error:", err);
+                  // Keep normal success message; don't alarm guests
+                });
+            }
+
           } catch (err) {
             console.error(err);
             statusEl.textContent =
@@ -483,4 +538,3 @@
   </script>
 </body>
 </html>
-
